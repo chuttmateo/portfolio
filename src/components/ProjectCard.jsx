@@ -4,12 +4,12 @@ import GithubButton from "./GithubButton"
 
 function ProjectCard(props) {
     return (
-        <div className="rounded-md max-w-96 bg-gray-800 flex flex-col 
-        justify-between gap-1 p-1 items-center">
+        <div className="rounded-lg max-w-96 dark:bg-dark-card-color flex flex-col 
+        justify-between gap-1 p-6 items-center">
             <p className="font-bold text-xl">{props.object.name}</p>
             <p>{hasDescription(props.object.description)}</p>
             <p>{hasLanguage(props.object.language)}</p>
-            <div className="flex justify-start gap-2 p-1">
+            <div className="flex justify-start gap-2">
                 <GithubButton url={props.object.html_url} />
                 {hasPage(props.object.homepage)}
             </div>
