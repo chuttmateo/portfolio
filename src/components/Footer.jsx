@@ -1,7 +1,7 @@
 function Footer() {
     
     return (
-        <div>
+        <div className="">
             <p>{currentDate()}</p>
         </div>
     )
