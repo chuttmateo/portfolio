@@ -5,7 +5,6 @@ import GitlabButton from "./GitlabButton"
 function Header() {
     const [button, setButton] = useState('light');
 
-
     useEffect(() => {
         toggleTheme()
     }, [])
