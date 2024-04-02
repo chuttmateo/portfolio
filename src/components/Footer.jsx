@@ -1,8 +1,17 @@
+import GithubButton from "./GithubButton";
+import GitlabButton from "./GitlabButton";
+
 function Footer() {
-    
+
     return (
-        <div className="">
-            <p>{currentDate()}</p>
+        <div className="flex flex-col items-center gap-1 min-h-14 justify-center sm:flex-row sm:justify-around">
+            <div>
+                <p>® {currentDate()}</p>
+            </div>
+            <div className="flex gap-2">
+                <GithubButton url="https://github.com/chuttmateo" />
+                <GitlabButton url="https://gitlab.com/chuttmateo" />
+            </div>
         </div>
     )
 }
