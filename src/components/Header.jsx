@@ -3,7 +3,7 @@ import GithubButton from "./GithubButton"
 import GitlabButton from "./GitlabButton"
 
 function Header() {
-    const [button, setButton] = useState('light');
+    const [button, setButton] = useState(localStorage.theme);
 
     useEffect(() => {
         toggleTheme()
