@@ -1,7 +1,7 @@
 
 export default function Profile() {
   return (
-    <div className="p-3 flex flex-col justify-center font-sans 
+    <div className="p-3 sm:p-10 flex flex-col justify-center font-sans 
     dark:bg-gradient-to-r from-blue-500 to-cyan-400
     rounded-md sm:rounded-lg">
       <h2 className=" text-title-color dark:text-dark-text-color text-3xl sm:text-7xl font-extrabold">Mateo Chutt</h2>
