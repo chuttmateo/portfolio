@@ -1,44 +1,77 @@
-import { useEffect, useState } from "react"
-import GithubButton from "./GithubButton"
-import GitlabButton from "./GitlabButton"
+import { useEffect, useState } from "react";
+import GithubButton from "./GithubButton";
+import GitlabButton from "./GitlabButton";
 
 function Header() {
-    const [button, setButton] = useState(localStorage.theme);
+  const [theme, setTheme] = useState();
 
-    useEffect(() => {
-        toggleTheme()
-    }, [])
+  useEffect(() => {
+    initializeTheme();
+  }, []);
 
+  return (
+    <div className="flex justify-between sticky top-5 ">
+      <button className="text-white hover:text-cyan-300">Home</button>
+      <div className="flex gap-3">
+        <button onClick={toggleTheme}>
+          {theme === "dark" ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-5 h-5 hover:text-cyan-300"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+              />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-5 h-5 hover:text-cyan-300"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+              />
+            </svg>
+          )}
+        </button>
+        <GithubButton url="https://github.com/chuttmateo" />
+        <GitlabButton url="https://gitlab.com/chuttmateo" />
+      </div>
+    </div>
+  );
 
-    return (
-        <div className="flex justify-between sticky top-5 ">
-            <button className="text-white hover:text-cyan-300">Home</button>
-            <div className="flex gap-3">
-                <button onClick={toggleTheme}>{button === 'light'
-                    ?
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 hover:text-cyan-300">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
-                    </svg>
-                    :
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 hover:text-cyan-300">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
-                    </svg>
-                }</button>
-                <GithubButton url="https://github.com/chuttmateo" />
-                <GitlabButton url="https://gitlab.com/chuttmateo" />
-            </div>
-        </div>
-    )
-    function toggleTheme() {
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark')
-            localStorage.theme = 'light'
-            setButton('light')
-        } else {
-            document.documentElement.classList.remove('dark')
-            localStorage.theme = 'dark'
-            setButton('dark')
-        }
+  function initializeTheme() {
+    let themeaux = localStorage.theme;
+    if (themeaux === "dark") {
+      document.documentElement.classList.add("dark");
+      setTheme(themeaux);
+    } else {
+      document.documentElement.classList.remove("dark");
+      setTheme(themeaux);
     }
+  }
+  function toggleTheme() {
+    if (theme === "dark") {
+      document.documentElement.classList.remove("dark");
+      localStorage.theme = "light";
+      setTheme("light");
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.theme = "dark";
+      setTheme("dark");
+    }
+  }
 }
-export default Header
+export default Header;
